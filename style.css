@@ -173,7 +173,7 @@ body {
 /* 5. DROPDOWN MENU (NEW ALIGNMENT METHOD)          */
 /* ================================================ */
 #dropdown-menu {
-    position: absolute;
+    position: relative;
     top: 100%;
     left: 0;
     width: 100%;
