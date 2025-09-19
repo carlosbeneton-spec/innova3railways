@@ -170,7 +170,7 @@ body {
 }
 
 /* ================================================ */
-/* 5. DROPDOWN MENU                                 */
+/* 5. DROPDOWN MENU (NEW ALIGNMENT METHOD)          */
 /* ================================================ */
 #dropdown-menu {
     position: absolute;
@@ -182,28 +182,47 @@ body {
     overflow: hidden;
     border-top: 1px solid #e0e0e0;
     box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-    display: none;
+
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease;
 }
 
 #dropdown-menu.visible {
-    display: block;
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
 }
 
-.dropdown-panel {
-    position: absolute;
-    padding-top: 20px;
+/* This container mimics the header's gnb-wrap for spacing */
+.gnb-wrap-mirror {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+/* This list mimics the header's gnb-menu-list for alignment */
+.gnb-menu-list-mirror {
+    display: flex;
+    list-style: none;
+}
+
+/* Each column mimics a header link for perfect alignment */
+.gnb-menu-list-mirror > li {
+    padding: 0 30px; /* MUST BE IDENTICAL to .gnb-menu-list li a horizontal padding */
 }
 
 .sub-menu {
     list-style: none;
-    text-align: left;
 }
 
 .sub-menu li a {
     display: block;
     color: #555;
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 2;
     transition: color 0.3s ease;
     white-space: nowrap;
 }

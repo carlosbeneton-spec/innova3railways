@@ -17,50 +17,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- 2. LOGIC FOR DYNAMIC DROPDOWN MENU ---
+    // --- 2. LOGIC FOR DROPDOWN MENU ---
     const menuContainer = document.getElementById('dropdown-menu');
-    const headerNavLinks = document.querySelectorAll('.gnb-menu-list a[data-menu]');
-    let hideMenuTimeout;
+    // Combine all triggers into one NodeList
+    const menuTriggers = document.querySelectorAll('.gnb-menu-list a, .bttn-all-menu');
 
-    // Function to show the menu and position the correct panel
-    function showMenu(triggerLink) {
-        clearTimeout(hideMenuTimeout); // Cancel any pending hide command
-        menuContainer.classList.add('visible');
-
-        // Hide all panels first
-        document.querySelectorAll('.dropdown-panel').forEach(p => p.style.display = 'none');
-
-        // Find the matching panel
-        const panelId = triggerLink.dataset.menu;
-        const targetPanel = document.querySelector(`.dropdown-panel[data-menu-panel="${panelId}"]`);
-
-        if (targetPanel) {
-            // Calculate position
-            const linkRect = triggerLink.getBoundingClientRect();
-            const headerRect = document.getElementById('header').getBoundingClientRect();
-            
-            // Position the panel's left edge to align with the link's left edge
-            targetPanel.style.left = `${linkRect.left - headerRect.left}px`;
-            targetPanel.style.display = 'block';
+    // Function to toggle the menu's visibility
+    function toggleMenu() {
+        menuContainer.classList.toggle('visible');
+    }
+    
+    // Add click listener to all triggers
+    menuTriggers.forEach(trigger => {
+        // Exclude 'HOME' link from opening the menu
+        if (trigger.textContent.trim().toUpperCase() === 'HOME') {
+            return;
         }
-    }
-
-    // Function to hide the menu
-    function hideMenu() {
-        // Delay hiding to allow moving mouse from link to panel
-        hideMenuTimeout = setTimeout(() => {
-            menuContainer.classList.remove('visible');
-        }, 200);
-    }
-
-    // Add mouseover event to each header link that has a menu
-    headerNavLinks.forEach(link => {
-        link.addEventListener('mouseover', () => {
-            showMenu(link);
+        
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation(); // Prevents the document click listener from firing immediately
+            toggleMenu();
         });
     });
 
-    // Keep menu open when hovering over the header or the dropdown itself
-    document.getElementById('header').addEventListener('mouseleave', hideMenu);
-    menuContainer.addEventListener('mouseenter', () => clearTimeout(hideMenuTimeout));
+    // Close the dropdown if clicking outside of the header area
+    document.addEventListener('click', (e) => {
+        if (menuContainer.classList.contains('visible') && !e.target.closest('#header')) {
+            toggleMenu();
+        }
+    });
 });
