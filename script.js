@@ -1,20 +1,50 @@
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- 1. LOGIC FOR PAGE TABS ---
+    const tabLinks = document.querySelectorAll('.tab-list a');
+    const tabPanels = document.querySelectorAll('.contents .tab-panel');
 
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+    tabLinks.forEach(link => {
+        link.addEventListener('click', event => {
+            event.preventDefault();
+            tabLinks.forEach(item => item.parentElement.classList.remove('active'));
+            tabPanels.forEach(panel => panel.classList.remove('active'));
+            link.parentElement.classList.add('active');
+            const targetPanel = document.querySelector(link.getAttribute('href'));
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
         });
     });
-});
 
-// Simple form submission handler
-const form = document.querySelector('#contact form');
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // In a real application, you would handle the form submission here,
-    // for example, by sending the data to a server.
-    alert('Thank you for your message! We will get back to you soon.');
-    form.reset();
+    // --- 2. LOGIC FOR DROPDOWN MENU ---
+    const menuContainer = document.getElementById('dropdown-menu');
+    // Combine all triggers into one NodeList
+    const menuTriggers = document.querySelectorAll('.gnb-menu-list a, .bttn-all-menu');
+
+    // Function to toggle the menu's visibility
+    function toggleMenu() {
+        menuContainer.classList.toggle('visible');
+    }
+    
+    // Add click listener to all triggers
+    menuTriggers.forEach(trigger => {
+        // Exclude 'HOME' link from opening the menu
+        if (trigger.textContent.trim().toUpperCase() === 'HOME') {
+            return;
+        }
+        
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation(); // Prevents the document click listener from firing immediately
+            toggleMenu();
+        });
+    });
+
+    // Close the dropdown if clicking outside of the header area
+    document.addEventListener('click', (e) => {
+        if (menuContainer.classList.contains('visible') && !e.target.closest('#header')) {
+            toggleMenu();
+        }
+    });
 });
