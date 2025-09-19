@@ -74,7 +74,8 @@ body {
     list-style: none;
 }
 .gnb-menu-list li a {
-    padding: 10px 20px;
+    /* MODIFIED: Increased padding for more space */
+    padding: 10px 30px;
     font-size: 16px;
     color: #353735;
     font-weight: bold;
@@ -195,59 +196,42 @@ body {
     visibility: visible;
 }
 
-/* CORRECTED: This new structure mirrors the header for perfect alignment */
-.header-content-mirror {
-    display: flex;
-    justify-content: space-between;
-    padding: 40px 50px; /* Top/bottom padding for content, side padding matches header */
-    width: 100%;
+/* CORRECTED: Wrapper for the entire dropdown content */
+.dropdown-content-wrapper {
+    padding: 20px 50px; /* Matches header side padding */
 }
 
-/* Placeholder takes up the same space as the real logo */
-.logo-wrap-placeholder {
-    flex-shrink: 0;
-    width: 170px; /* Adjust this width to match your logo's container */
-}
-
-/* This is the container for the actual menu columns */
-.menu-content-wrapper {
+/* A container that perfectly mimics the header's gnb-wrap */
+.gnb-wrap-mirror {
     flex-grow: 1;
     display: flex;
     justify-content: center;
 }
 
-/* Placeholder takes up the same space as the header buttons */
-.menu-placeholder {
-    flex-shrink: 0;
-    width: 150px; /* Adjust this width to match the buttons' container */
-}
-
-.menu-column {
-    padding: 0 20px;
-}
-
-.menu-column h3 {
-    font-family: 'Klavika', sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    color: #353735;
-    margin-bottom: 15px;
-    visibility: hidden; /* Hide title but keep space */
-}
-
-.menu-column .sub-menu {
+/* A list that mimics the header's main navigation list */
+.gnb-menu-mirror-list {
+    display: flex;
     list-style: none;
 }
 
-.menu-column .sub-menu li a {
+/* Each column in the dropdown mimics a header list item */
+.gnb-menu-mirror-list > li {
+    padding: 0 30px; /* Matches the new padding of header links */
+}
+
+.sub-menu {
+    list-style: none;
+}
+
+.sub-menu li a {
     display: inline-block;
     color: #555;
     font-size: 16px;
-    line-height: 2;
+    line-height: 1.8;
     transition: color 0.3s ease;
     white-space: nowrap;
 }
 
-.menu-column .sub-menu li a:hover {
+.sub-menu li a:hover {
     color: #000;
 }
