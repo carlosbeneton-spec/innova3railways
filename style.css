@@ -195,20 +195,35 @@ body {
     visibility: visible;
 }
 
-.menu-content-wrapper {
+/* CORRECTED: This new structure mirrors the header for perfect alignment */
+.header-content-mirror {
     display: flex;
-    /* CORRECTED: Removed justify-content and used padding to align */
-    width: auto; /* Let the container size itself */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 0;
-    /* Aligns the start of the menu columns with the start of the header nav links */
-    padding-left: 28%; 
+    justify-content: space-between;
+    padding: 40px 50px; /* Top/bottom padding for content, side padding matches header */
+    width: 100%;
+}
+
+/* Placeholder takes up the same space as the real logo */
+.logo-wrap-placeholder {
+    flex-shrink: 0;
+    width: 170px; /* Adjust this width to match your logo's container */
+}
+
+/* This is the container for the actual menu columns */
+.menu-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Placeholder takes up the same space as the header buttons */
+.menu-placeholder {
+    flex-shrink: 0;
+    width: 150px; /* Adjust this width to match the buttons' container */
 }
 
 .menu-column {
     padding: 0 20px;
-    flex-shrink: 0; /* Prevents columns from shrinking */
 }
 
 .menu-column h3 {
@@ -217,7 +232,7 @@ body {
     font-weight: bold;
     color: #353735;
     margin-bottom: 15px;
-    visibility: hidden; 
+    visibility: hidden; /* Hide title but keep space */
 }
 
 .menu-column .sub-menu {
@@ -230,7 +245,7 @@ body {
     font-size: 16px;
     line-height: 2;
     transition: color 0.3s ease;
-    white-space: nowrap; /* Prevents text from wrapping */
+    white-space: nowrap;
 }
 
 .menu-column .sub-menu li a:hover {

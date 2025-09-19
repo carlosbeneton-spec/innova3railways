@@ -19,29 +19,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- 2. LOGIC FOR DROPDOWN MENU ---
     const menuContainer = document.getElementById('dropdown-menu');
-    // Combine all triggers into one NodeList
     const menuTriggers = document.querySelectorAll('.gnb-menu-list a, .bttn-all-menu');
 
-    // Function to toggle the menu's visibility
     function toggleMenu() {
         menuContainer.classList.toggle('visible');
     }
     
-    // Add click listener to all triggers
     menuTriggers.forEach(trigger => {
-        // Exclude 'HOME' link from opening the menu if you want it to be a direct link
         if (trigger.textContent.trim().toUpperCase() === 'HOME') {
-            return; // Skip adding the toggle listener to the HOME link
+            return;
         }
         
         trigger.addEventListener('click', (e) => {
             e.preventDefault();
-            e.stopPropagation(); // Prevents the document click listener from firing immediately
+            e.stopPropagation();
             toggleMenu();
         });
     });
 
-    // Close the dropdown if clicking outside of the header area
     document.addEventListener('click', (e) => {
         if (menuContainer.classList.contains('visible') && !e.target.closest('#header')) {
             toggleMenu();
