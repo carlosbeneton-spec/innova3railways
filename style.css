@@ -55,7 +55,7 @@ body {
     width: 100%;
     background-color: #FAFAFA;
     position: relative;
-    z-index: 1001; 
+    z-index: 1001;
 }
 .logo-wrap a {
     display: block;
@@ -168,6 +168,27 @@ body {
     font-size: 18px;
     line-height: 1.7;
 }
+
+.tab-panel-content {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.tab-panel-image {
+    flex: 0 0 300px;
+    margin-right: 40px;
+}
+
+.tab-panel-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.tab-panel-text {
+    flex: 1;
+}
+
 
 /* ================================================ */
 /* 5. DROPDOWN MENU (NEW ALIGNMENT METHOD)          */
