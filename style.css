@@ -101,6 +101,7 @@ body {
     justify-content: center;
     text-align: center;
     color: #fff;
+    /* --- CORRECTED: Changed .jpeg to .JPEG --- */
     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/innova3-hero.JPEG');
     background-size: cover;
     background-position: center;
@@ -166,14 +167,3 @@ body {
     font-size: 18px;
     line-height: 1.7;
 }
-
-/* --- DELETED: Removed old content styles that are no longer needed --- */
-/*
-.content-inner { ... }
-.intro-msg { ... }
-.intro-tit { ... }
-.intro-subtit { ... }
-.intro-desc p { ... }
-.intro-img { ... }
-.intro-img-wrap img { ... }
-*/
