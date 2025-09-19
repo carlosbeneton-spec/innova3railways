@@ -1,50 +1,48 @@
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // --- 1. LOGIC FOR PAGE TABS ---
-    const tabLinks = document.querySelectorAll('.tab-list a');
-    const tabPanels = document.querySelectorAll('.contents .tab-panel');
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
-    tabLinks.forEach(link => {
-        link.addEventListener('click', event => {
-            event.preventDefault();
-            tabLinks.forEach(item => item.parentElement.classList.remove('active'));
-            tabPanels.forEach(panel => panel.classList.remove('active'));
-            link.parentElement.classList.add('active');
-            const targetPanel = document.querySelector(link.getAttribute('href'));
-            if (targetPanel) {
-                targetPanel.classList.add('active');
-            }
+        // If the mobile menu is open, close it before scrolling
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            hamburgerIcon.classList.remove('fa-times');
+            hamburgerIcon.classList.add('fa-bars');
+        }
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
         });
     });
+});
 
-    // --- 2. LOGIC FOR DROPDOWN MENU ---
-    const menuContainer = document.getElementById('dropdown-menu');
-    // Combine all triggers into one NodeList
-    const menuTriggers = document.querySelectorAll('.gnb-menu-list a, .bttn-all-menu');
+// Simple form submission handler
+const form = document.querySelector('#contact form');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // In a real application, you would handle the form submission here,
+    // for example, by sending the data to a server.
+    alert('Thank you for your message! We will get back to you soon.');
+    form.reset();
+});
 
-    // Function to toggle the menu's visibility
-    function toggleMenu() {
-        menuContainer.classList.toggle('visible');
+// ===================================
+// NEW: JavaScript for Hamburger Menu
+// ===================================
+const hamburger = document.querySelector('.hamburger-menu');
+const navLinks = document.querySelector('.nav-links');
+const hamburgerIcon = document.querySelector('.hamburger-menu i');
+
+hamburger.addEventListener('click', () => {
+    // Toggle the 'active' class to show/hide the menu
+    navLinks.classList.toggle('active');
+
+    // Toggle the icon between bars and an 'X'
+    if (navLinks.classList.contains('active')) {
+        hamburgerIcon.classList.remove('fa-bars');
+        hamburgerIcon.classList.add('fa-times');
+    } else {
+        hamburgerIcon.classList.remove('fa-times');
+        hamburgerIcon.classList.add('fa-bars');
     }
-    
-    // Add click listener to all triggers
-    menuTriggers.forEach(trigger => {
-        // Exclude 'HOME' link from opening the menu
-        if (trigger.textContent.trim().toUpperCase() === 'HOME') {
-            return;
-        }
-        
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation(); // Prevents the document click listener from firing immediately
-            toggleMenu();
-        });
-    });
-
-    // Close the dropdown if clicking outside of the header area
-    document.addEventListener('click', (e) => {
-        if (menuContainer.classList.contains('visible') && !e.target.closest('#header')) {
-            toggleMenu();
-        }
-    });
 });
