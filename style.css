@@ -101,7 +101,7 @@ body {
     justify-content: center;
     text-align: center;
     color: #fff;
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/innova3-hero.jpeg');
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/innova3-hero.JPEG');
     background-size: cover;
     background-position: center;
 }
