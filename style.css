@@ -74,7 +74,6 @@ body {
     list-style: none;
 }
 .gnb-menu-list li a {
-    /* MODIFIED: Increased padding for more space */
     padding: 10px 30px;
     font-size: 16px;
     color: #353735;
@@ -184,47 +183,27 @@ body {
     border-top: 1px solid #e0e0e0;
     box-shadow: 0 8px 16px rgba(0,0,0,0.05);
 
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: max-height 0.4s ease-out, opacity 0.3s ease;
+    /* Hide the container by default */
+    display: none;
 }
 
 #dropdown-menu.visible {
-    max-height: 500px;
-    opacity: 1;
-    visibility: visible;
+    display: block;
 }
 
-/* CORRECTED: Wrapper for the entire dropdown content */
-.dropdown-content-wrapper {
-    padding: 20px 50px; /* Matches header side padding */
-}
-
-/* A container that perfectly mimics the header's gnb-wrap */
-.gnb-wrap-mirror {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-}
-
-/* A list that mimics the header's main navigation list */
-.gnb-menu-mirror-list {
-    display: flex;
-    list-style: none;
-}
-
-/* Each column in the dropdown mimics a header list item */
-.gnb-menu-mirror-list > li {
-    padding: 0 30px; /* Matches the new padding of header links */
+/* Each sub-menu panel is positioned by JavaScript */
+.dropdown-panel {
+    position: absolute;
+    padding-top: 20px; /* Space from the header */
 }
 
 .sub-menu {
     list-style: none;
+    text-align: left;
 }
 
 .sub-menu li a {
-    display: inline-block;
+    display: block;
     color: #555;
     font-size: 16px;
     line-height: 1.8;
