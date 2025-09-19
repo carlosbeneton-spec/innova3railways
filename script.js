@@ -17,68 +17,64 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- 2. LOGIC FOR FULL-SCREEN MENU ---
-    const menuOverlay = document.getElementById('full-screen-menu');
+    // --- 2. LOGIC FOR DROPDOWN MENU ---
+    const menuContainer = document.getElementById('dropdown-menu');
     const menuButton = document.querySelector('.bttn-all-menu');
-    const closeButton = document.getElementById('close-menu-btn');
     const headerNavLinks = document.querySelectorAll('.gnb-menu-list a');
-    
     const mainMenuLinks = document.querySelectorAll('.main-menu-nav li');
     const subMenus = document.querySelectorAll('.sub-menu');
 
-    // Function to open the menu
-    function openMenu() {
-        menuOverlay.classList.add('visible');
+    // Function to toggle the menu's visibility
+    function toggleMenu() {
+        menuContainer.classList.toggle('visible');
     }
 
-    // Function to close the menu
-    function closeMenu() {
-        menuOverlay.classList.remove('visible');
-    }
-    
-    // Open menu when header links or MENU button are clicked
-    menuButton.addEventListener('click', openMenu);
-    headerNavLinks.forEach(link => link.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent page jump
-        
-        // Activate the correct sub-menu before opening
-        const targetSubMenuId = link.dataset.menu + '-sub';
-        
+    // Function to activate a specific submenu
+    function showSubMenu(menuId) {
+        const targetSubMenuId = menuId + '-sub';
+
         mainMenuLinks.forEach(mainLink => {
-            if (mainLink.dataset.submenu === targetSubMenuId) {
-                mainLink.classList.add('active');
-            } else {
-                mainLink.classList.remove('active');
-            }
+            mainLink.classList.toggle('active', mainLink.dataset.submenu === targetSubMenuId);
         });
-        
+
         subMenus.forEach(subMenu => {
-            if (subMenu.id === targetSubMenuId) {
-                subMenu.classList.add('active');
-            } else {
-                subMenu.classList.remove('active');
+            subMenu.classList.toggle('active', subMenu.id === targetSubMenuId);
+        });
+    }
+
+    // Event listener for the main MENU button
+    menuButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevents the click from closing the menu immediately
+        toggleMenu();
+    });
+
+    // Event listeners for header navigation links
+    headerNavLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const menuId = e.target.dataset.menu;
+            showSubMenu(menuId);
+            // If the menu is already open, this click won't close it.
+            // If it's closed, it will open to the correct section.
+            if (!menuContainer.classList.contains('visible')) {
+                toggleMenu();
             }
         });
+    });
 
-        openMenu();
-    }));
-
-    // Close menu with the close button
-    closeButton.addEventListener('click', closeMenu);
-
-    // Logic to switch sub-menus inside the overlay
+    // Event listeners for switching sub-menus inside the dropdown
     mainMenuLinks.forEach(link => {
         link.addEventListener('click', () => {
-            // Deactivate all
-            mainMenuLinks.forEach(item => item.classList.remove('active'));
-            subMenus.forEach(item => item.classList.remove('active'));
-
-            // Activate clicked one
-            link.classList.add('active');
-            const targetSubMenu = document.getElementById(link.dataset.submenu);
-            if (targetSubMenu) {
-                targetSubMenu.classList.add('active');
-            }
+            const menuId = link.dataset.submenu.replace('-sub', '');
+            showSubMenu(menuId);
         });
+    });
+
+    // Close the dropdown if clicking outside of it
+    document.addEventListener('click', (e) => {
+        if (menuContainer.classList.contains('visible') && !menuContainer.contains(e.target) && !e.target.closest('#header')) {
+            toggleMenu();
+        }
     });
 });

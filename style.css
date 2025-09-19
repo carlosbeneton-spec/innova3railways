@@ -4,7 +4,7 @@
 @font-face {
     font-family: 'Klavika';
     src: url('fonts/Klavika-Bold.woff2') format('woff2'),
-         url('fonts/Klavika-Bold.otf') format('opentype');
+         url('fonts/klavika-bold.otf') format('opentype');
     font-weight: bold;
     font-style: normal;
 }
@@ -45,6 +45,7 @@ body {
     width: 100%;
     z-index: 31;
     border-bottom: 1px solid #e0e0e0;
+    position: relative; /* Needed for the dropdown positioning */
 }
 .header-content {
     display: flex;
@@ -75,7 +76,7 @@ body {
     font-size: 16px;
     color: #353735;
     font-weight: bold;
-    cursor: pointer; /* Changed for menu trigger */
+    cursor: pointer;
 }
 .menu {
     display: flex;
@@ -96,7 +97,6 @@ body {
 /* 3. HERO SECTION (PAGE VISUAL)                    */
 /* ================================================ */
 .page-visual {
-    /* --- CORRECTED: Changed 75vh to 100vh --- */
     height: calc(100vh - 81px);
     display: flex;
     align-items: center;
@@ -168,51 +168,42 @@ body {
 }
 
 /* ================================================ */
-/* 5. FULL-SCREEN MENU                              */
+/* 5. DROPDOWN MENU                                 */
 /* ================================================ */
-#full-screen-menu {
-    position: fixed;
-    top: 0;
+#dropdown-menu {
+    position: absolute;
+    top: 100%; /* Position right below the header */
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(20, 20, 20, 0.95);
+    width: 100%;
+    background-color: #1a1a1a;
     z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    /* Hidden by default, controlled by JS */
+    overflow: hidden; /* This is key for the animation */
+
+    /* Hidden by default */
+    max-height: 0;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-in-out, visibility 0.5s ease;
 }
 
-#full-screen-menu.visible {
+#dropdown-menu.visible {
+    max-height: 500px; /* Animate to a height large enough for content */
     opacity: 1;
     visibility: visible;
 }
 
-#close-menu-btn {
-    position: absolute;
-    top: 30px;
-    right: 50px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 48px;
-    cursor: pointer;
-}
-
 .menu-content-wrapper {
     display: flex;
-    width: 80%;
-    max-width: 1000px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
 }
 
 .main-menu-nav {
-    flex-basis: 40%;
+    flex-basis: 35%;
     border-right: 1px solid rgba(255, 255, 255, 0.2);
+    padding-right: 40px;
 }
 
 .main-menu-nav ul {
@@ -222,38 +213,35 @@ body {
 .main-menu-nav li {
     color: rgba(255, 255, 255, 0.5);
     font-family: 'Klavika', sans-serif;
-    font-size: 36px;
-    padding: 10px 0;
+    font-size: 28px;
+    padding: 5px 0;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
-.main-menu-nav li:hover {
-    color: #fff;
-}
-
+.main-menu-nav li:hover,
 .main-menu-nav li.active {
     color: #fff;
 }
 
 .sub-menu-container {
-    flex-basis: 60%;
+    flex-basis: 65%;
     padding-left: 50px;
 }
 
 .sub-menu {
     list-style: none;
-    display: none; /* Hidden by default */
+    display: none;
 }
 
 .sub-menu.active {
-    display: block; /* Shown when active */
+    display: block;
 }
 
 .sub-menu li a {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 20px;
-    line-height: 2;
+    font-size: 18px;
+    line-height: 1.8;
     transition: color 0.3s ease;
 }
 
