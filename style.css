@@ -75,6 +75,7 @@ body {
     font-size: 16px;
     color: #353735;
     font-weight: bold;
+    cursor: pointer; /* Changed for menu trigger */
 }
 .menu {
     display: flex;
@@ -95,13 +96,13 @@ body {
 /* 3. HERO SECTION (PAGE VISUAL)                    */
 /* ================================================ */
 .page-visual {
-    height: calc(75vh - 81px);
+    /* --- CORRECTED: Changed 75vh to 100vh --- */
+    height: calc(100vh - 81px);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
-    /* --- CORRECTED: Changed .jpeg to .JPEG --- */
     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/innova3-hero.JPEG');
     background-size: cover;
     background-position: center;
@@ -147,16 +148,14 @@ body {
     padding: 80px 0;
     text-align: center;
 }
-
-/* --- ADDED: Styles for the Tab Panels --- */
 .tab-panel {
-    display: none; /* Hide all panels by default */
+    display: none;
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
 }
 .tab-panel.active {
-    display: block; /* Show only the active panel */
+    display: block;
 }
 .tab-panel h3 {
     font-family: 'Klavika', sans-serif;
@@ -166,4 +165,98 @@ body {
 .tab-panel p {
     font-size: 18px;
     line-height: 1.7;
+}
+
+/* ================================================ */
+/* 5. FULL-SCREEN MENU                              */
+/* ================================================ */
+#full-screen-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(20, 20, 20, 0.95);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Hidden by default, controlled by JS */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#full-screen-menu.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#close-menu-btn {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 48px;
+    cursor: pointer;
+}
+
+.menu-content-wrapper {
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+}
+
+.main-menu-nav {
+    flex-basis: 40%;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.main-menu-nav ul {
+    list-style: none;
+}
+
+.main-menu-nav li {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Klavika', sans-serif;
+    font-size: 36px;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.main-menu-nav li:hover {
+    color: #fff;
+}
+
+.main-menu-nav li.active {
+    color: #fff;
+}
+
+.sub-menu-container {
+    flex-basis: 60%;
+    padding-left: 50px;
+}
+
+.sub-menu {
+    list-style: none;
+    display: none; /* Hidden by default */
+}
+
+.sub-menu.active {
+    display: block; /* Shown when active */
+}
+
+.sub-menu li a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    line-height: 2;
+    transition: color 0.3s ease;
+}
+
+.sub-menu li a:hover {
+    color: #fff;
 }
