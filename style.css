@@ -45,6 +45,7 @@ body {
     width: 100%;
     z-index: 31;
     border-bottom: 1px solid #e0e0e0;
+    position: relative;
 }
 .header-content {
     display: flex;
@@ -69,10 +70,6 @@ body {
 .gnb-menu-list {
     display: flex;
     list-style: none;
-}
-/* MODIFIED: Added position relative for dropdown context */
-.gnb-menu-list li {
-    position: relative;
 }
 .gnb-menu-list li a {
     padding: 10px 20px;
@@ -171,51 +168,61 @@ body {
 }
 
 /* ================================================ */
-/* 5. HEADER DROPDOWN MENU                          */
+/* 5. DROPDOWN MENU                                 */
 /* ================================================ */
-.dropdown-panel {
+#dropdown-menu {
     position: absolute;
-    top: 150%; /* Start position for animation */
-    left: 50%;
-    transform: translateX(-50%);
+    top: 100%;
+    left: 0;
+    width: 100%;
     background-color: #FAFAFA;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    width: max-content; /* Make panel as wide as its content */
-    z-index: 100;
+    z-index: 1000;
+    overflow: hidden;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
 
     /* Hidden by default */
+    max-height: 0;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, top 0.3s ease;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease;
 }
 
-/* Show on hover */
-.has-dropdown:hover .dropdown-panel {
+#dropdown-menu.visible {
+    max-height: 500px; /* Animate to a height large enough for content */
     opacity: 1;
     visibility: visible;
-    top: 100%; /* Final position for animation */
 }
 
-.dropdown-panel .sub-menu {
+.menu-content-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.menu-column h3 {
+    font-family: 'Klavika', sans-serif;
+    font-size: 24px;
+    color: #353735;
+    margin-bottom: 15px;
+}
+
+.menu-column .sub-menu {
     list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
 }
 
-.dropdown-panel .sub-menu li a {
-    display: block;
-    padding: 8px 15px;
-    font-size: 15px;
+.menu-column .sub-menu li a {
+    display: inline-block;
     color: #555;
-    white-space: nowrap; /* Prevent line breaks */
-    transition: color 0.2s, background-color 0.2s;
-    border-radius: 4px;
+    font-size: 16px;
+    line-height: 2;
+    transition: color 0.3s ease;
 }
 
-.dropdown-panel .sub-menu li a:hover {
+.menu-column .sub-menu li a:hover {
     color: #000;
-    background-color: #f0f0f0;
 }
