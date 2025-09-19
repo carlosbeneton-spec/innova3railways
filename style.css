@@ -1,0 +1,179 @@
+/* ================================================ */
+/* 1. FONT DEFINITIONS & BASIC RESET                */
+/* ================================================ */
+@font-face {
+    font-family: 'Klavika';
+    src: url('fonts/Klavika-Bold.woff2') format('woff2'),
+         url('fonts/Klavika-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next Condensed';
+    src: url('fonts/AvenirNextCondensed-Regular.woff2') format('woff2'),
+         url('fonts/AvenirNextCondensed-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Basic Reset */
+html, body, div, span, h1, h2, h3, p, a, img, ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    color: inherit;
+}
+body {
+    line-height: 1.5;
+    font-family: 'Avenir Next Condensed', sans-serif;
+    color: #333;
+    background-color: #fff;
+}
+* {
+    box-sizing: border-box;
+}
+
+/* ================================================ */
+/* 2. HEADER                                        */
+/* ================================================ */
+#header {
+    width: 100%;
+    z-index: 31;
+    border-bottom: 1px solid #e0e0e0;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    width: 100%;
+    background-color: #FAFAFA;
+}
+.logo-wrap a {
+    display: block;
+}
+.logo-wrap img {
+    height: 40px;
+    width: auto;
+}
+.gnb-wrap {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+.gnb-menu-list {
+    display: flex;
+    list-style: none;
+}
+.gnb-menu-list li a {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #353735;
+    font-weight: bold;
+}
+.menu {
+    display: flex;
+    align-items: center;
+    color: #353735;
+    font-weight: bold;
+}
+.bttn-lang-sel, .bttn-all-menu {
+    background: none;
+    border: 1px solid #353735;
+    color: #353735;
+    padding: 8px 15px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* ================================================ */
+/* 3. HERO SECTION (PAGE VISUAL)                    */
+/* ================================================ */
+.page-visual {
+    height: calc(75vh - 81px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/innova3-hero.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+.page-title-sec .title-main-sub {
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+.page-title-sec .title-main {
+    font-family: 'Klavika', sans-serif;
+    font-size: 52px;
+    line-height: 1.2;
+    margin-top: 10px;
+}
+
+/* ================================================ */
+/* 4. SECONDARY NAVIGATION & CONTENT                */
+/* ================================================ */
+.contents-wrap {
+    position: relative;
+}
+.page-tab-section {
+    border-bottom: 1px solid #e0e0e0;
+}
+.tab-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+.tab-list a {
+    padding: 20px 30px;
+    display: block;
+    color: #555;
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+}
+.tab-list li.active a {
+    color: #000;
+    border-bottom-color: #000;
+}
+.contents {
+    padding: 80px 0;
+    text-align: center;
+}
+
+/* --- ADDED: Styles for the Tab Panels --- */
+.tab-panel {
+    display: none; /* Hide all panels by default */
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.tab-panel.active {
+    display: block; /* Show only the active panel */
+}
+.tab-panel h3 {
+    font-family: 'Klavika', sans-serif;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+.tab-panel p {
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+/* --- DELETED: Removed old content styles that are no longer needed --- */
+/*
+.content-inner { ... }
+.intro-msg { ... }
+.intro-tit { ... }
+.intro-subtit { ... }
+.intro-desc p { ... }
+.intro-img { ... }
+.intro-img-wrap img { ... }
+*/
