@@ -20,13 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- 2. LOGIC FOR DYNAMIC DROPDOWN MENU ---
     const menuContainer = document.getElementById('dropdown-menu');
     const headerNavLinks = document.querySelectorAll('.gnb-menu-list a[data-menu]');
-    let menuVisible = false;
     let hideMenuTimeout;
 
     // Function to show the menu and position the correct panel
     function showMenu(triggerLink) {
         clearTimeout(hideMenuTimeout); // Cancel any pending hide command
-        menuVisible = true;
         menuContainer.classList.add('visible');
 
         // Hide all panels first
@@ -51,12 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function hideMenu() {
         // Delay hiding to allow moving mouse from link to panel
         hideMenuTimeout = setTimeout(() => {
-            menuVisible = false;
             menuContainer.classList.remove('visible');
         }, 200);
     }
 
-    // Add mouseover event to each header link
+    // Add mouseover event to each header link that has a menu
     headerNavLinks.forEach(link => {
         link.addEventListener('mouseover', () => {
             showMenu(link);
