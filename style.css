@@ -99,7 +99,7 @@ body {
 /* 3. HERO SECTION (PAGE VISUAL)                    */
 /* ================================================ */
 .page-visual {
-    height: calc(75vh - 81px);
+    height: calc(65vh - 81px);
     display: flex;
     align-items: center;
     justify-content: center;
