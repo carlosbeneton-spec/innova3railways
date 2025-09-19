@@ -54,6 +54,9 @@ body {
     padding: 20px 50px;
     width: 100%;
     background-color: #FAFAFA;
+    /* MODIFIED: Added position and z-index to place header above dropdown */
+    position: relative;
+    z-index: 1001; 
 }
 .logo-wrap a {
     display: block;
@@ -176,7 +179,7 @@ body {
     left: 0;
     width: 100%;
     background-color: #FAFAFA;
-    z-index: 1000;
+    z-index: 1000; /* Lower than header-content */
     overflow: hidden;
     border-top: 1px solid #e0e0e0;
     box-shadow: 0 8px 16px rgba(0,0,0,0.05);
@@ -189,26 +192,32 @@ body {
 }
 
 #dropdown-menu.visible {
-    max-height: 500px; /* Animate to a height large enough for content */
+    max-height: 500px;
     opacity: 1;
     visibility: visible;
 }
 
+/* MODIFIED: Wrapper is now inside a container with padding that matches the header */
 .menu-content-wrapper {
     display: flex;
     justify-content: center;
     gap: 60px;
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 0;
+    padding: 40px 50px; /* Aligns with header padding */
+    /* This empty space mimics the header navigation's position */
+    padding-left: calc(50% - 250px);
 }
 
 .menu-column h3 {
     font-family: 'Klavika', sans-serif;
-    font-size: 24px;
+    font-size: 16px; /* Matching header font size */
+    font-weight: bold;
     color: #353735;
     margin-bottom: 15px;
+    /* Makes title invisible but preserves space */
+    visibility: hidden; 
 }
 
 .menu-column .sub-menu {
