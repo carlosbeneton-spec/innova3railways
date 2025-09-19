@@ -54,7 +54,6 @@ body {
     padding: 20px 50px;
     width: 100%;
     background-color: #FAFAFA;
-    /* MODIFIED: Added position and z-index to place header above dropdown */
     position: relative;
     z-index: 1001; 
 }
@@ -179,12 +178,11 @@ body {
     left: 0;
     width: 100%;
     background-color: #FAFAFA;
-    z-index: 1000; /* Lower than header-content */
+    z-index: 1000;
     overflow: hidden;
     border-top: 1px solid #e0e0e0;
     box-shadow: 0 8px 16px rgba(0,0,0,0.05);
 
-    /* Hidden by default */
     max-height: 0;
     opacity: 0;
     visibility: hidden;
@@ -197,26 +195,28 @@ body {
     visibility: visible;
 }
 
-/* MODIFIED: Wrapper is now inside a container with padding that matches the header */
 .menu-content-wrapper {
     display: flex;
-    justify-content: center;
-    gap: 60px;
-    width: 100%;
+    /* CORRECTED: Removed justify-content and used padding to align */
+    width: auto; /* Let the container size itself */
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 50px; /* Aligns with header padding */
-    /* This empty space mimics the header navigation's position */
-    padding-left: calc(50% - 250px);
+    padding: 40px 0;
+    /* Aligns the start of the menu columns with the start of the header nav links */
+    padding-left: 28%; 
+}
+
+.menu-column {
+    padding: 0 20px;
+    flex-shrink: 0; /* Prevents columns from shrinking */
 }
 
 .menu-column h3 {
     font-family: 'Klavika', sans-serif;
-    font-size: 16px; /* Matching header font size */
+    font-size: 16px;
     font-weight: bold;
     color: #353735;
     margin-bottom: 15px;
-    /* Makes title invisible but preserves space */
     visibility: hidden; 
 }
 
@@ -230,6 +230,7 @@ body {
     font-size: 16px;
     line-height: 2;
     transition: color 0.3s ease;
+    white-space: nowrap; /* Prevents text from wrapping */
 }
 
 .menu-column .sub-menu li a:hover {
