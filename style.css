@@ -34,7 +34,7 @@ body {
     color: #333;
     background-color: #fff;
 }
-•⁠  ⁠{
+* {
     box-sizing: border-box;
 }
 
@@ -51,7 +51,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 20px; /* Adjusted padding */
     width: 100%;
     background-color: #FAFAFA;
     position: relative;
@@ -74,7 +74,7 @@ body {
     list-style: none;
 }
 .gnb-menu-list li a {
-    padding: 40px 30px;
+    padding: 40px 15px; /* Adjusted padding */
     font-size: 16px;
     color: #353735;
     font-weight: bold;
